@@ -27,6 +27,7 @@ import java.io.Serializable;
 
 /**
  * Interface to build a bar series
+ * 创建柱序列的接口
  */
 public interface BarSeriesBuilder extends Serializable {
     /**

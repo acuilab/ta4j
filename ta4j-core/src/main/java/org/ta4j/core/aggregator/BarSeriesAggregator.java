@@ -27,6 +27,7 @@ import org.ta4j.core.BarSeries;
 
 /**
  * Bar aggregator interface to aggregate list of bars into another list of bars.
+ * 柱序列聚合器
  */
 public interface BarSeriesAggregator {
 

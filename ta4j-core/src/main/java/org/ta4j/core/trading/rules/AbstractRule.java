@@ -29,6 +29,7 @@ import org.ta4j.core.Rule;
 
 /**
  * An abstract trading {@link Rule rule}.
+ * 交易规则的基类
  */
 public abstract class AbstractRule implements Rule {
 

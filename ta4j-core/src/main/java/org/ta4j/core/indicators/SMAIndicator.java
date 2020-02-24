@@ -28,9 +28,9 @@ import org.ta4j.core.num.Num;
 
 /**
  * Simple moving average (SMA) indicator.
+ * 简单移动平均指标
  *
- * @see <a href=
- *      "https://www.investopedia.com/terms/s/sma.asp">https://www.investopedia.com/terms/s/sma.asp</a>
+ * @see <a href= "https://www.investopedia.com/terms/s/sma.asp">https://www.investopedia.com/terms/s/sma.asp</a>
  */
 public class SMAIndicator extends CachedIndicator<Num> {
 

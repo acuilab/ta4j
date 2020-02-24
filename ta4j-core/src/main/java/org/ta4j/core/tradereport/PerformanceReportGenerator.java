@@ -33,8 +33,8 @@ import org.ta4j.core.analysis.criteria.TotalProfit2Criterion;
 import org.ta4j.core.num.Num;
 
 /**
- * This class generates PerformanceReport basis on provided trading report and
- * bar series
+ * This class generates PerformanceReport basis on provided trading report and bar series
+ * 性能报告生成器
  *
  * @see PerformanceReport
  */

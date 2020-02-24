@@ -40,6 +40,7 @@ import static org.ta4j.core.num.NaN.NaN;
 
 /**
  * Base implementation of a {@link BarSeries}.
+ * 柱序列的基础实现
  */
 public class BaseBarSeries implements BarSeries {
 
@@ -50,6 +51,7 @@ public class BaseBarSeries implements BarSeries {
     private static final Logger log = LoggerFactory.getLogger(BaseBarSeries.class);
     /**
      * Name for unnamed series
+     * 未命名序列名
      */
     private static final String UNNAMED_SERIES_NAME = "unnamed_series";
     /**
@@ -58,18 +60,22 @@ public class BaseBarSeries implements BarSeries {
     protected final Function<Number, Num> numFunction;
     /**
      * Name of the series
+     * 序列名
      */
     private final String name;
     /**
      * List of bars
+     * 柱列表
      */
     private final List<Bar> bars;
     /**
      * Begin index of the bar series
+     * 柱序列的开始索引
      */
     private int seriesBeginIndex;
     /**
      * End index of the bar series
+     * 柱序列的结束索引
      */
     private int seriesEndIndex;
     /**

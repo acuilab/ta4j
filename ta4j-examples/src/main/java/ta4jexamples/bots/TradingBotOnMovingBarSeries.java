@@ -44,17 +44,20 @@ import java.time.ZonedDateTime;
 
 /**
  * This class is an example of a dummy trading bot using ta4j.
+ * 此类是使用ta4j的虚拟交易机器人的示例。
  * <p/>
  */
 public class TradingBotOnMovingBarSeries {
 
     /**
      * Close price of the last bar
+     * 最后一个柱的收盘价
      */
     private static Num LAST_BAR_CLOSE_PRICE;
 
     /**
      * Builds a moving bar series (i.e. keeping only the maxBarCount last bars)
+     * 构建一个移动的柱序列（maxBarCount指向最后一个柱）
      *
      * @param maxBarCount the number of bars to keep in the bar series (at maximum)
      * @return a moving bar series
@@ -63,6 +66,7 @@ public class TradingBotOnMovingBarSeries {
         BarSeries series = CsvTradesLoader.loadBitstampSeries();
         System.out.print("Initial bar count: " + series.getBarCount());
         // Limitating the number of bars to maxBarCount
+	// 限制最大柱个数
         series.setMaximumBarCount(maxBarCount);
         LAST_BAR_CLOSE_PRICE = series.getBar(series.getEndIndex()).getClosePrice();
         System.out.println(" (limited to " + maxBarCount + "), close price = " + LAST_BAR_CLOSE_PRICE);
@@ -78,12 +82,16 @@ public class TradingBotOnMovingBarSeries {
             throw new IllegalArgumentException("Series cannot be null");
         }
 
+	// 简单移动平均指标(12日均线)
         ClosePriceIndicator closePrice = new ClosePriceIndicator(series);
         SMAIndicator sma = new SMAIndicator(closePrice, 12);
 
         // Signals
         // Buy when SMA goes over close price
         // Sell when close price goes over SMA
+	// 信号
+	// 12日均线超过收盘价时买
+	// 收盘价超过12日均线时卖出
         Strategy buySellSignals = new BaseStrategy(new OverIndicatorRule(sma, closePrice),
                 new UnderIndicatorRule(sma, closePrice));
         return buySellSignals;
@@ -91,6 +99,7 @@ public class TradingBotOnMovingBarSeries {
 
     /**
      * Generates a random decimal number between min and max.
+     * 生成介于最小值和最大值之间的随机十进制数。
      *
      * @param min the minimum bound
      * @param max the maximum bound
@@ -108,6 +117,7 @@ public class TradingBotOnMovingBarSeries {
 
     /**
      * Generates a random bar.
+     * 生成一个随机柱
      *
      * @return a random bar
      */
@@ -126,17 +136,21 @@ public class TradingBotOnMovingBarSeries {
 
         System.out.println("********************** Initialization **********************");
         // Getting the bar series
+	// 生成柱序列
         BarSeries series = initMovingBarSeries(20);
 
         // Building the trading strategy
+	// 构建交易策略
         Strategy strategy = buildStrategy(series);
 
         // Initializing the trading history
+	// 初始化交易记录
         TradingRecord tradingRecord = new BaseTradingRecord();
         System.out.println("************************************************************");
 
         /*
          * We run the strategy for the 50 next bars.
+	 * 在接下来的50个柱上运行策略
          */
         for (int i = 0; i < 50; i++) {
 

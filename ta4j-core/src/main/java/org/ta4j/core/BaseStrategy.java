@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 
 /**
  * Base implementation of a {@link Strategy}.
+ * 策略的基础实现
  */
 public class BaseStrategy implements Strategy {
 
@@ -38,12 +39,15 @@ public class BaseStrategy implements Strategy {
     private final String className = getClass().getSimpleName();
 
     /** Name of the strategy */
+    // 策略名称
     private String name;
 
     /** The entry rule */
+    // 进入规则
     private Rule entryRule;
 
     /** The exit rule */
+    // 退出规则
     private Rule exitRule;
 
     /**
@@ -51,6 +55,9 @@ public class BaseStrategy implements Strategy {
      * During the unstable period of the strategy any order placement will be
      * cancelled.<br>
      * I.e. no entry/exit signal will be fired before index == unstablePeriod.
+     * 不稳定时期（柱数）。
+     * 在策略的不稳定时期，任何订单下单都会被取消。
+     * 即在index == stablePeriod之前不会触发任何进入/退出信号。
      */
     private int unstablePeriod;
 

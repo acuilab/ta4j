@@ -27,6 +27,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * This class represents report which contains performance statistics
+ * 性能报告
  */
 public class PerformanceReport {
 

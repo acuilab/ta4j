@@ -45,6 +45,7 @@ import java.text.DecimalFormat;
 
 /**
  * This class displays an example of the transaction cost calculation.
+ * 此类显示交易成本计算的示例。
  */
 public class TradeCost {
 

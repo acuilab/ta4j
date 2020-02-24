@@ -42,6 +42,7 @@ import ta4jexamples.loaders.CsvTradesLoader;
 
 /**
  * Moving momentum strategy.
+ * 动量策略
  *
  * @see <a href=
  *      "http://stockcharts.com/help/doku.php?id=chart_school:trading_strategies:moving_momentum">
@@ -73,14 +74,14 @@ public class MovingMomentumStrategy {
         EMAIndicator emaMacd = new EMAIndicator(macd, 18);
 
         // Entry rule
-        Rule entryRule = new OverIndicatorRule(shortEma, longEma) // Trend
-                .and(new CrossedDownIndicatorRule(stochasticOscillK, 20)) // Signal 1
-                .and(new OverIndicatorRule(macd, emaMacd)); // Signal 2
+        Rule entryRule = new OverIndicatorRule(shortEma, longEma) // Trend  趋势
+                .and(new CrossedDownIndicatorRule(stochasticOscillK, 20)) // Signal 1	信号1
+                .and(new OverIndicatorRule(macd, emaMacd)); // Signal 2	信号2
 
         // Exit rule
-        Rule exitRule = new UnderIndicatorRule(shortEma, longEma) // Trend
-                .and(new CrossedUpIndicatorRule(stochasticOscillK, 20)) // Signal 1
-                .and(new UnderIndicatorRule(macd, emaMacd)); // Signal 2
+        Rule exitRule = new UnderIndicatorRule(shortEma, longEma) // Trend  趋势
+                .and(new CrossedUpIndicatorRule(stochasticOscillK, 20)) // Signal 1 信号1
+                .and(new UnderIndicatorRule(macd, emaMacd)); // Signal 2    信号2
 
         return new BaseStrategy(entryRule, exitRule);
     }
@@ -88,18 +89,21 @@ public class MovingMomentumStrategy {
     public static void main(String[] args) {
 
         // Getting the bar series
+	// 获得柱序列
         BarSeries series = CsvTradesLoader.loadBitstampSeries();
 
         // Building the trading strategy
+	// 创建交易策略
         Strategy strategy = buildStrategy(series);
 
         // Running the strategy
+	// 执行策略
         BarSeriesManager seriesManager = new BarSeriesManager(series);
         TradingRecord tradingRecord = seriesManager.run(strategy);
         System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
 
         // Analysis
-        System.out.println(
-                "Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+	// 分析
+        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
     }
 }

@@ -31,6 +31,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Average profit criterion.
+ * 平均利润标准
  *
  * The {@link TotalProfitCriterion total profit} over the
  * {@link NumberOfBarsCriterion number of bars}.

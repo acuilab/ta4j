@@ -35,6 +35,8 @@ import org.ta4j.core.num.Num;
  *
  * Used for backtesting. Allows to run a {@link Strategy trading strategy} over
  * the managed bar series.
+ * 
+ * 柱序列对象管理器，用于回测。允许在受管理的柱序列上执行策略
  */
 public class BarSeriesManager {
 
@@ -149,10 +151,10 @@ public class BarSeriesManager {
     /**
      * Runs the provided strategy over the managed series.
      *
-     * @param strategy  the trading strategy
-     * @param orderType the {@link OrderType} used to open the trades
-     * @param amount    the amount used to open/close the trades
-     * @return the trading record coming from the run
+     * @param strategy  the trading strategy	交易策略
+     * @param orderType the {@link OrderType} used to open the trades	订单类型，用于打开交易
+     * @param amount    the amount used to open/close the trades    数量，用于打开或关闭交易的数量
+     * @return the trading record coming from the run	交易记录
      */
     public TradingRecord run(Strategy strategy, OrderType orderType, Num amount) {
         return run(strategy, orderType, amount, barSeries.getBeginIndex(), barSeries.getEndIndex());

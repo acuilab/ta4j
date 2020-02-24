@@ -41,6 +41,14 @@ import java.util.Objects;
  * <li>an amount to be (or that was) ordered (optional)
  * </ul>
  * A {@link Trade trade} is a pair of complementary orders.
+ * 
+ * 订单。由以下属性定义：
+ *  执行的柱序列中的索引
+ *  订单类型（买入或卖出）
+ *  单价（可选）
+ *  数量（可选）
+ * 
+ * Trade是一对（买和卖）订单
  */
 public class Order implements Serializable {
 

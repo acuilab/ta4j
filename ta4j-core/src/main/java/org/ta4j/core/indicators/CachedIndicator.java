@@ -32,9 +32,9 @@ import java.util.List;
 
 /**
  * Cached {@link Indicator indicator}.
+ * 缓存的指标。缓存指标的构造函数，避免重新计算相同索引的指标
  *
- * Caches the constructor of the indicator. Avoid to calculate the same index of
- * the indicator twice.
+ * Caches the constructor of the indicator. Avoid to calculate the same index of the indicator twice.
  */
 public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
 

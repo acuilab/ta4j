@@ -29,8 +29,10 @@ import org.ta4j.core.num.Num;
 
 /**
  * Cross indicator.
+ * 交叉指标。布尔指示器，用于监视两个指示器的交叉。
  *
  * Boolean indicator which monitors two-indicators crossings.
+ * 
  */
 public class CrossIndicator extends CachedIndicator<Boolean> {
 

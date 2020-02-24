@@ -29,6 +29,9 @@ package org.ta4j.core;
  * A strategy is a pair of complementary {@link Rule rules}. It may recommend to
  * enter or to exit. Recommendations are based respectively on the entry rule or
  * on the exit rule.
+ * 
+ * 交易策略。
+ * 策略是一对补充规则。 建议您输入或退出。 推荐分别基于进入规则或退出规则。
  */
 public interface Strategy {
 

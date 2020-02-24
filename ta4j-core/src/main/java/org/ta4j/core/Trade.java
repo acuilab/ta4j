@@ -38,6 +38,9 @@ import static org.ta4j.core.num.NaN.NaN;
  *
  * The exit order has the complement type of the entry order.<br>
  * I.e.: entry == BUY --> exit == SELL entry == SELL --> exit == BUY
+ * 
+ * 交易：一对（买和卖）订单。出口订单是入口订单的补充类型
+ * 例如：入口==买 --> 出口==卖	入口==卖 --> 出口==买
  */
 public class Trade implements Serializable {
 

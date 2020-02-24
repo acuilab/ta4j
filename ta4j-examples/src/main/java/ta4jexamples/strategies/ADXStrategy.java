@@ -94,7 +94,6 @@ public class ADXStrategy {
         System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
 
         // Analysis
-        System.out.println(
-                "Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
     }
 }

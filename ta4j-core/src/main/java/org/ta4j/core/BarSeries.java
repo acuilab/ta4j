@@ -44,6 +44,12 @@ import java.util.function.Function;
  * cases)
  * <li>limited to a fixed number of bars (e.g. for actual trading)
  * </ul>
+ * 
+ * 柱序列，由预定义的时间段分隔（15分钟，一天等），通常，柱序列是：
+ *  指标计算的基础
+ *  受开始索引和结束索引之间的限制（例如，对于某些回测案例）
+ *  限制为固定数量的柱（例如，用于实际交易）
+ * 
  */
 public interface BarSeries extends Serializable {
 

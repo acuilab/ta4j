@@ -30,6 +30,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Indicator-over-indicator rule.
+ * 当第一个指标的值严格大于第二个指标的值时满足。
  *
  * Satisfied when the value of the first {@link Indicator indicator} is strictly
  * greater than the value of the second one.

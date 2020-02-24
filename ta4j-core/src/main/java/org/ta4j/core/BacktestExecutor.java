@@ -33,6 +33,7 @@ import java.util.List;
 /**
  * This class enables backtesting of multiple strategies and comparing them to
  * see which is the best
+ * 此类可对多种策略进行回测并进行比较，以找出最佳方法
  */
 public class BacktestExecutor {
 
@@ -51,7 +52,9 @@ public class BacktestExecutor {
     /**
      * Execute given strategies and return trading statements
      *
+     * @param strategies
      * @param amount - The amount used to open/close the trades
+     * @return 
      */
     public List<TradingStatement> execute(List<Strategy> strategies, Num amount) {
         return execute(strategies, amount, Order.OrderType.BUY);

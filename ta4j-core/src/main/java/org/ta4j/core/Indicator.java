@@ -32,6 +32,8 @@ import java.io.Serializable;
  * bar series, returns a value of type <b>T</b>.
  *
  * @param <T> the type of returned value (Double, Boolean, etc.)
+ * 
+ * 柱序列上的指标。对于柱序列的每一个索引，返回一个类型为T的值。
  */
 public interface Indicator<T> extends Serializable {
 
@@ -47,6 +49,7 @@ public interface Indicator<T> extends Serializable {
     BarSeries getBarSeries();
 
     /**
+     * @param number
      * @return the {@link Num Num extending class} for the given {@link Number}
      */
     Num numOf(Number number);

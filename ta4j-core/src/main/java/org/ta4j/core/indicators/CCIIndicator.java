@@ -30,6 +30,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Commodity Channel Index (CCI) indicator.
+ * 顺势指标
  *
  * @see <a href=
  *      "http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators:commodity_channel_in">

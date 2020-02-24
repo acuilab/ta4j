@@ -36,6 +36,7 @@ import java.util.function.Function;
 
 /**
  * Base implementation of a {@link Bar}.
+ * 柱的基础实现
  */
 public class BaseBar implements Bar {
 

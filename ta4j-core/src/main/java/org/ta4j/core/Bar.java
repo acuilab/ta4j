@@ -37,6 +37,8 @@ import java.util.function.Function;
  *
  * Bar object is aggregated open/high/low/close/volume/etc. data over a time
  * period.
+ * 
+ * 一个时间段的柱。柱对象包含了一段时间的开盘/最高/最低/收盘/成交量等信息。
  */
 public interface Bar extends Serializable {
     /**
@@ -147,6 +149,7 @@ public interface Bar extends Serializable {
      * 
      * @param tradeVolume the traded volume
      * @param tradePrice  the price
+     * @param numFunction
      * @deprecated use corresponding function of {@link BarSeries}
      */
     @Deprecated

@@ -31,6 +31,7 @@ import java.util.List;
 
 /**
  * Bar series aggregator based on provided bar aggregator.
+ * 基于柱聚合器实现的柱序列聚合器
  */
 public class BaseBarSeriesAggregator implements BarSeriesAggregator {
 

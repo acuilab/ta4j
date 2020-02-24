@@ -40,6 +40,7 @@ import java.util.logging.Logger;
 
 /**
  * This class build a Ta4j bar series from a CSV file containing bars.
+ * 此类从CSV文件创建柱序列
  */
 public class CsvBarsLoader {
 
@@ -58,8 +59,7 @@ public class CsvBarsLoader {
 
         BarSeries series = new BaseBarSeries("apple_bars");
 
-        try (CSVReader csvReader = new CSVReader(new InputStreamReader(stream, Charset.forName("UTF-8")), ',', '"',
-                1)) {
+        try (CSVReader csvReader = new CSVReader(new InputStreamReader(stream, Charset.forName("UTF-8")), ',', '"', 1)) {
             String[] line;
             while ((line = csvReader.readNext()) != null) {
                 ZonedDateTime date = LocalDate.parse(line[0], DATE_FORMAT).atStartOfDay(ZoneId.systemDefault());

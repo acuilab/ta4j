@@ -30,6 +30,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Total profit criterion.
+ * 总利润标准
  *
  * The total profit of the provided {@link Trade trade(s)} over the provided
  * {@link BarSeries series}.

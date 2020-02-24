@@ -23,6 +23,7 @@
  */
 /**
  * The main module for trade reports
+ * 交易报告的主要模块
  *
  */
 package org.ta4j.core.tradereport;

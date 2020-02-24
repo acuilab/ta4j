@@ -32,6 +32,7 @@ import java.util.List;
 
 /**
  * Base implementation of a {@link TradingRecord}.
+ * 交易记录的基础实现
  *
  */
 public class BaseTradingRecord implements TradingRecord {
@@ -40,49 +41,59 @@ public class BaseTradingRecord implements TradingRecord {
 
     /**
      * The recorded orders
+     * 记录的订单
      */
     private List<Order> orders = new ArrayList<>();
 
     /**
      * The recorded BUY orders
+     * 记录的买单
      */
     private List<Order> buyOrders = new ArrayList<>();
 
     /**
      * The recorded SELL orders
+     * 记录的卖单
      */
     private List<Order> sellOrders = new ArrayList<>();
 
     /**
      * The recorded entry orders
+     * 记录的进入单
      */
     private List<Order> entryOrders = new ArrayList<>();
 
     /**
      * The recorded exit orders
+     * 记录的退出单
      */
     private List<Order> exitOrders = new ArrayList<>();
 
     /**
      * The recorded trades
+     * 记录的交易
      */
     private List<Trade> trades = new ArrayList<>();
 
     /**
      * The entry type (BUY or SELL) in the trading session
+     * 在交易会话中进入单的类型
      */
     private Order.OrderType startingType;
 
     /**
      * The current non-closed trade (there's always one)
+     * 当前非关闭的交易（总有一个）
      */
     private Trade currentTrade;
 
     /**
      * Trading cost models
+     * 交易成本模型
+     * 
      */
-    private CostModel transactionCostModel;
-    private CostModel holdingCostModel;
+    private CostModel transactionCostModel; // 交易成本
+    private CostModel holdingCostModel;	    // 持仓成本
 
     /**
      * Constructor.

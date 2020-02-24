@@ -34,6 +34,7 @@ import java.util.List;
 
 /**
  * Bar aggregator basing on duration.
+ * 基于时间段的柱聚合器实现
  */
 public class DurationBarAggregator implements BarAggregator {
 

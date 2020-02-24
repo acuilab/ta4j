@@ -35,6 +35,9 @@ import org.ta4j.core.trading.rules.XorRule;
  *
  * A {@link Strategy trading strategy} is a pair of complementary (entry and
  * exit) rules.
+ * 
+ * 用于制定策略的规则。交易规则可以由其他规则的组合组成。
+ * 交易策略是一对互补的（进入和退出）规则。
  */
 public interface Rule {
 

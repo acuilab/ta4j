@@ -29,6 +29,7 @@ import java.util.List;
 
 /**
  * Bar aggregator interface to aggregate list of bars into another list of bars.
+ * 柱聚合器接口，将柱列表聚合为另一个柱列表
  */
 public interface BarAggregator {
 

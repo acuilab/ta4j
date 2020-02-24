@@ -32,6 +32,7 @@ import java.util.function.Function;
 
 /**
  * Base class for price indicators
+ * 价格指标的基类
  */
 public abstract class PriceIndicator extends CachedIndicator<Num> {
 

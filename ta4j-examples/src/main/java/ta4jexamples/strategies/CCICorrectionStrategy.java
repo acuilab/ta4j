@@ -38,6 +38,7 @@ import ta4jexamples.loaders.CsvTradesLoader;
 
 /**
  * CCI Correction Strategy
+ * CCI校正策略
  *
  * @see <a href=
  *      "http://stockcharts.com/school/doku.php?id=chart_school:trading_strategies:cci_correction">
@@ -56,14 +57,18 @@ public class CCICorrectionStrategy {
 
         CCIIndicator longCci = new CCIIndicator(series, 200);
         CCIIndicator shortCci = new CCIIndicator(series, 5);
-        Num plus100 = series.numOf(100);
-        Num minus100 = series.numOf(-100);
+        Num plus100 = series.numOf(100);    // +100线
+        Num minus100 = series.numOf(-100);  // -100线
 
-        Rule entryRule = new OverIndicatorRule(longCci, plus100) // Bull trend
-                .and(new UnderIndicatorRule(shortCci, minus100)); // Signal
+	// 进入规则
+	// 长期cci位于+100线以上，且短期cci位于-100线以下
+        Rule entryRule = new OverIndicatorRule(longCci, plus100) // Bull trend	牛趋势
+                .and(new UnderIndicatorRule(shortCci, minus100)); // Signal	信号
 
-        Rule exitRule = new UnderIndicatorRule(longCci, minus100) // Bear trend
-                .and(new OverIndicatorRule(shortCci, plus100)); // Signal
+	// 退出规则
+	// 长期cci位于-100线以下，且短期cci位于+100线以上
+        Rule exitRule = new UnderIndicatorRule(longCci, minus100) // Bear trend	熊趋势
+                .and(new OverIndicatorRule(shortCci, plus100)); // Signal	信号
 
         Strategy strategy = new BaseStrategy(entryRule, exitRule);
         strategy.setUnstablePeriod(5);
@@ -84,7 +89,6 @@ public class CCICorrectionStrategy {
         System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
 
         // Analysis
-        System.out.println(
-                "Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
     }
 }

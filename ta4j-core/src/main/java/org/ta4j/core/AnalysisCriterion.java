@@ -35,6 +35,10 @@ import java.util.List;
  * <li>Analyze the performance of a {@link Strategy strategy}
  * <li>Compare several {@link Strategy strategies} together
  * </ul>
+ * 
+ * 分析标准，用于：
+ *  分析策略的性能
+ *  一起比较几种策略
  */
 public interface AnalysisCriterion {
 

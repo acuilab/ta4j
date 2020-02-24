@@ -40,6 +40,10 @@ import static org.ta4j.core.num.NaN.NaN;
  * <li>check to satisfaction of some trading rules (when running a strategy)
  * <li>analyze the performance of a trading strategy
  * </ul>
+ * 
+ * 交易会话历史/记录。执行策略时保留完整的交易记录。它用于：
+ *  检查是否满足某些交易规则（在执行策略时）
+ *  分析交易策略的表现
  */
 public interface TradingRecord extends Serializable {
 

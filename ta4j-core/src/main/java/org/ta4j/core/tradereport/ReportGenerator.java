@@ -29,6 +29,7 @@ import org.ta4j.core.TradingRecord;
 
 /**
  * Generic interface for generating trade reports
+ * 报告生成器。生成交易报告的通用接口
  *
  * @param <T> type of report to be generated
  */

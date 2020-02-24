@@ -42,11 +42,12 @@ import ta4jexamples.loaders.CsvTradesLoader;
 
 /**
  * Strategies which compares current price to global extrema over a week.
+ * 将当前价格与一周内全局极值进行比较的策略。
  */
 public class GlobalExtremaStrategy {
 
-    // We assume that there were at least one trade every 5 minutes during the whole
-    // week
+    // We assume that there were at least one trade every 5 minutes during the whole week
+    // 我们假设整个星期中每5分钟至少有一笔交易
     private static final int NB_BARS_PER_WEEK = 12 * 24 * 7;
 
     /**
@@ -61,17 +62,21 @@ public class GlobalExtremaStrategy {
         ClosePriceIndicator closePrices = new ClosePriceIndicator(series);
 
         // Getting the max price over the past week
+	// 获得过去一周的最高价格
         HighPriceIndicator maxPrices = new HighPriceIndicator(series);
         HighestValueIndicator weekMaxPrice = new HighestValueIndicator(maxPrices, NB_BARS_PER_WEEK);
         // Getting the min price over the past week
+	// 获得过去一周的最低价格
         LowPriceIndicator minPrices = new LowPriceIndicator(series);
         LowestValueIndicator weekMinPrice = new LowestValueIndicator(minPrices, NB_BARS_PER_WEEK);
 
         // Going long if the close price goes below the min price
+	// 如果收盘价低于最低价则做多
         MultiplierIndicator downWeek = new MultiplierIndicator(weekMinPrice, 1.004);
         Rule buyingRule = new UnderIndicatorRule(closePrices, downWeek);
 
         // Going short if the close price goes above the max price
+	// 如果收盘价高于最高价则做空
         MultiplierIndicator upWeek = new MultiplierIndicator(weekMaxPrice, 0.996);
         Rule sellingRule = new OverIndicatorRule(closePrices, upWeek);
 
@@ -81,18 +86,21 @@ public class GlobalExtremaStrategy {
     public static void main(String[] args) {
 
         // Getting the bar series
+	// 获得柱序列
         BarSeries series = CsvTradesLoader.loadBitstampSeries();
 
         // Building the trading strategy
+	// 创建交易策略
         Strategy strategy = buildStrategy(series);
 
         // Running the strategy
+	// 执行策略
         BarSeriesManager seriesManager = new BarSeriesManager(series);
         TradingRecord tradingRecord = seriesManager.run(strategy);
         System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
 
         // Analysis
-        System.out.println(
-                "Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+	// 分析
+        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
     }
 }

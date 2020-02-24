@@ -30,6 +30,7 @@ import org.ta4j.core.TradingRecord;
  * A one-shot rule.
  *
  * Satisfied the first time it's checked then never again.
+ * 一次性规则。第一次检查满意，之后再也不会满意。
  */
 public class JustOnceRule extends AbstractRule {
 

@@ -38,6 +38,8 @@ import java.util.List;
  *
  * This class allows to follow the money cash flow involved by a list of trades
  * over a bar series.
+ * 
+ * 现金流。此类允许跟踪柱序列中的交易所涉及的现金流量。
  */
 public class CashFlow implements Indicator<Num> {
 

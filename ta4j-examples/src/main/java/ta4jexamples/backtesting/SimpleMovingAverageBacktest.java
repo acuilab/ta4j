@@ -37,13 +37,20 @@ import java.time.Duration;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
+/**
+ * 简单移动平均回测
+ * @author admin
+ */
 public class SimpleMovingAverageBacktest {
 
     public static void main(String[] args) throws InterruptedException {
+	// 创建柱序列
         BarSeries series = createBarSeries();
 
+	// 创建3日均线策略
         Strategy strategy3DaySma = create3DaySmaStrategy(series);
 
+	// 实例化柱序列管理器并执行3日均线策略和2日均线策略(从买单开始打开交易)
         BarSeriesManager seriesManager = new BarSeriesManager(series);
         TradingRecord tradingRecord3DaySma = seriesManager.run(strategy3DaySma, Order.OrderType.BUY,
                 PrecisionNum.valueOf(50));
@@ -54,6 +61,7 @@ public class SimpleMovingAverageBacktest {
                 PrecisionNum.valueOf(50));
         System.out.println(tradingRecord2DaySma);
 
+	// 总利润标准
         AnalysisCriterion criterion = new TotalProfitCriterion();
         Num calculate3DaySma = criterion.calculate(series, tradingRecord3DaySma);
         Num calculate2DaySma = criterion.calculate(series, tradingRecord2DaySma);
@@ -62,6 +70,10 @@ public class SimpleMovingAverageBacktest {
         System.out.println(calculate2DaySma);
     }
 
+    /**
+     * 创建柱序列
+     * @return 
+     */
     private static BarSeries createBarSeries() {
         BarSeries series = new BaseBarSeries();
         series.addBar(createBar(CreateDay(1), 100.0, 100.0, 100.0, 100.0, 1060));
@@ -82,16 +94,31 @@ public class SimpleMovingAverageBacktest {
                 .build();
     }
 
+    /**
+     * 创建日
+     * @param day
+     * @return 
+     */
     private static ZonedDateTime CreateDay(int day) {
         return ZonedDateTime.of(2018, 01, day, 12, 0, 0, 0, ZoneId.systemDefault());
     }
 
+    /**
+     * 创建3日均线策略
+     * @param series
+     * @return 
+     */
     private static Strategy create3DaySmaStrategy(BarSeries series) {
         ClosePriceIndicator closePrice = new ClosePriceIndicator(series);
         SMAIndicator sma = new SMAIndicator(closePrice, 3);
         return new BaseStrategy(new UnderIndicatorRule(sma, closePrice), new OverIndicatorRule(sma, closePrice));
     }
 
+    /**
+     * 创建2日均线策略
+     * @param series
+     * @return 
+     */
     private static Strategy create2DaySmaStrategy(BarSeries series) {
         ClosePriceIndicator closePrice = new ClosePriceIndicator(series);
         SMAIndicator sma = new SMAIndicator(closePrice, 2);

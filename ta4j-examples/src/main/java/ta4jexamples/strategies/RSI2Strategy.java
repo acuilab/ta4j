@@ -41,6 +41,7 @@ import ta4jexamples.loaders.CsvTradesLoader;
 
 /**
  * 2-Period RSI Strategy
+ * 2周期RSI策略
  *
  * @see <a href=
  *      "http://stockcharts.com/school/doku.php?id=chart_school:trading_strategies:rsi2">
@@ -96,8 +97,7 @@ public class RSI2Strategy {
         System.out.println("Number of trades for the strategy: " + tradingRecord.getTradeCount());
 
         // Analysis
-        System.out.println(
-                "Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
+        System.out.println("Total profit for the strategy: " + new TotalProfitCriterion().calculate(series, tradingRecord));
     }
 
 }

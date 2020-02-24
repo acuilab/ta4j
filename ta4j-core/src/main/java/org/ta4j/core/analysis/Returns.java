@@ -36,8 +36,10 @@ import java.util.List;
 
 /**
  * The return rates.
+ * 回报率
  *
  * This class allows to compute the return rate of a price time-series
+ * 此类可计算价格时间序列的回报率
  */
 public class Returns implements Indicator<Num> {
 
