@@ -27,12 +27,16 @@ import org.ta4j.core.Order;
 import org.ta4j.core.Trade;
 import org.ta4j.core.num.Num;
 
+/**
+ * 线性借贷成本模型
+ */
 public class LinearBorrowingCostModel implements CostModel {
 
     /**
      * Slope of the linear model - fee per period
+     * 线性模型的斜率-每期费用
      */
-    private double feePerPeriod;
+    private final double feePerPeriod;
 
     /**
      * Constructor. (feePerPeriod * nPeriod)
@@ -43,17 +47,21 @@ public class LinearBorrowingCostModel implements CostModel {
         this.feePerPeriod = feePerPeriod;
     }
 
+    @Override
     public Num calculate(Num price, Num amount) {
         // borrowing costs depend on borrowed period
+	// 借款费用取决于借款期限
         return price.numOf(0);
     }
 
     /**
      * Calculates the borrowing cost of a closed trade.
+     * 计算已关闭交易的借贷成本。
      * 
      * @param trade the trade
      * @return the absolute order cost
      */
+    @Override
     public Num calculate(Trade trade) {
         if (trade.isOpened()) {
             throw new IllegalArgumentException("Trade is not closed. Final index of observation needs to be provided.");
@@ -63,22 +71,26 @@ public class LinearBorrowingCostModel implements CostModel {
 
     /**
      * Calculates the borrowing cost of a trade.
+     * 计算交易的借贷成本。
      * 
      * @param trade        the trade
-     * @param currentIndex final bar index to be considered (for open trades)
+     * @param currentIndex final bar index to be considered (for open trades)	最后的柱索引（对打开的交易）
      * @return the absolute order cost
      */
+    @Override
     public Num calculate(Trade trade, int currentIndex) {
-        Order entryOrder = trade.getEntry();
-        Order exitOrder = trade.getExit();
+        Order entryOrder = trade.getEntry();	// 进入订单
+        Order exitOrder = trade.getExit();	// 退出订单
         Num borrowingCost = trade.getEntry().getNetPrice().numOf(0);
 
         // borrowing costs apply for short positions only
         if (entryOrder != null && entryOrder.getType().equals(Order.OrderType.SELL) && entryOrder.getAmount() != null) {
             int tradingPeriods = 0;
             if (trade.isClosed()) {
+		// 关闭的交易
                 tradingPeriods = exitOrder.getIndex() - entryOrder.getIndex();
             } else if (trade.isOpened()) {
+		// 打开的交易
                 tradingPeriods = currentIndex - entryOrder.getIndex();
             }
             borrowingCost = getHoldingCostForPeriods(tradingPeriods, trade.getEntry().getValue());
@@ -100,7 +112,9 @@ public class LinearBorrowingCostModel implements CostModel {
      * Evaluate if two models are equal
      * 
      * @param otherModel model to compare with
+     * @return 
      */
+    @Override
     public boolean equals(CostModel otherModel) {
         boolean equality = false;
         if (this.getClass().equals(otherModel.getClass())) {

@@ -33,6 +33,7 @@ import org.ta4j.core.num.Num;
  *
  * Satisfied when the value of the {@link Indicator indicator} is between the
  * values of the boundary (up/down) indicators.
+ * 当指标值介于边界指标（上/下）之间时满足。
  */
 public class InPipeRule extends AbstractRule {
 

@@ -35,6 +35,12 @@ import java.util.List;
  * 缓存的指标。缓存指标的构造函数，避免重新计算相同索引的指标
  *
  * Caches the constructor of the indicator. Avoid to calculate the same index of the indicator twice.
+ * 
+ * 一些指标需要递归调用和/或前一个报价的值才能计算其最后一个值。 
+ * 因此，已经为ta4j提供的所有指标实施了缓存机制。 该系统避免两次计算相同的值。 
+ * 因此，如果已经计算出一个值，则下次请求该值时将从缓存中检索该值。 最后一个柱的值将不会被缓存。 
+ * 这样，您可以通过向其添加价格/交易来修改TimeSeries的最后一个柱，并使用指标重新计算结果。
+ * @param <T>
  */
 public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
 
@@ -42,12 +48,13 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
 
     /**
      * List of cached results
+     * 缓存结果列表
      */
-    private final List<T> results = new ArrayList<T>();
+    private final List<T> results = new ArrayList<>();
 
     /**
-     * Should always be the index of the last result in the results list. I.E. the
-     * last calculated result.
+     * Should always be the index of the last result in the results list. I.E. the last calculated result.
+     * 应该始终是结果列表中最后一个结果的索引。 即 最后的计算结果。
      */
     protected int highestResultIndex = -1;
 
@@ -69,18 +76,23 @@ public abstract class CachedIndicator<T> extends AbstractIndicator<T> {
         this(indicator.getBarSeries());
     }
 
+    /**
+     * 获得指标值
+     * @param index 柱序号
+     * @return 
+     */
     @Override
     public T getValue(int index) {
         BarSeries series = getBarSeries();
         if (series == null) {
-            // Series is null; the indicator doesn't need cache.
-            // (e.g. simple computation of the value)
+            // Series is null; the indicator doesn't need cache.    柱序列为空；指标不需要缓存
+            // (e.g. simple computation of the value)		    （例如，简单地计算值）
             // --> Calculating the value
             return calculate(index);
         }
 
         // Series is not null
-
+	// 柱序列不为空
         final int removedBarsCount = series.getRemovedBarsCount();
         final int maximumResultCount = series.getMaximumBarCount();
 

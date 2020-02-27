@@ -32,6 +32,7 @@ import org.ta4j.core.num.Num;
  * 交叉指标。布尔指示器，用于监视两个指示器的交叉。
  *
  * Boolean indicator which monitors two-indicators crossings.
+ * 布尔指示器，用于监视两个指示器的交叉。
  * 
  */
 public class CrossIndicator extends CachedIndicator<Boolean> {
@@ -49,6 +50,7 @@ public class CrossIndicator extends CachedIndicator<Boolean> {
      */
     public CrossIndicator(Indicator<Num> up, Indicator<Num> low) {
         // TODO: check if up series is equal to low series
+	// TODO: 检查上序列是否等于下序列
         super(up);
         this.up = up;
         this.low = low;
@@ -57,22 +59,27 @@ public class CrossIndicator extends CachedIndicator<Boolean> {
     @Override
     protected Boolean calculate(int index) {
 
+	// 第0个柱不交叉，上序列的值大于等于下序列的值不交叉
         int i = index;
         if (i == 0 || up.getValue(i).isGreaterThanOrEqual(low.getValue(i))) {
             return false;
         }
 
+	// 否则前一个柱上序列的值大于下序列的值交叉
         i--;
         if (up.getValue(i).isGreaterThan(low.getValue(i))) {
             return true;
         }
+	// 否则若前一个柱上序列的值等于下序列的值，则一直往导到上序列的值与下序列的值不等
         while (i > 0 && up.getValue(i).isEqual(low.getValue(i))) {
             i--;
         }
+	// 如果不是第一个柱且上序列的值大于下序列的值交叉
         return (i != 0) && (up.getValue(i).isGreaterThan(low.getValue(i)));
     }
 
     /**
+     * 获得下序列
      * @return the initial lower indicator
      */
     public Indicator<Num> getLow() {
@@ -80,6 +87,7 @@ public class CrossIndicator extends CachedIndicator<Boolean> {
     }
 
     /**
+     * 获得上序列
      * @return the initial upper indicator
      */
     public Indicator<Num> getUp() {

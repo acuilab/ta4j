@@ -83,7 +83,7 @@ public class BaseTradingRecord implements TradingRecord {
 
     /**
      * The current non-closed trade (there's always one)
-     * 当前非关闭的交易（总有一个）
+     * 当前非关闭的交易（总有一个新的【进入订单和退出订单都为空】或打开的【进入订单不为空，退出订单为空】交易）
      */
     private Trade currentTrade;
 
@@ -104,6 +104,7 @@ public class BaseTradingRecord implements TradingRecord {
 
     /**
      * Constructor.
+     * @param orderType	    进入订单类型
      */
     public BaseTradingRecord(Order.OrderType orderType) {
         this(orderType, new ZeroCostModel(), new ZeroCostModel());
@@ -112,13 +113,14 @@ public class BaseTradingRecord implements TradingRecord {
     /**
      * Constructor.
      *
-     * @param entryOrderType       the {@link Order.OrderType order type} of entries
-     *                             in the trading session
+     * @param entryOrderType       the {@link Order.OrderType order type} of entries in the trading session
+     *	    进入订单类型
      * @param transactionCostModel the cost model for transactions of the asset
+     *	    交易成本模型
      * @param holdingCostModel     the cost model for holding asset (e.g. borrowing)
+     *	    持仓成本模型
      */
-    public BaseTradingRecord(Order.OrderType entryOrderType, CostModel transactionCostModel,
-            CostModel holdingCostModel) {
+    public BaseTradingRecord(Order.OrderType entryOrderType, CostModel transactionCostModel, CostModel holdingCostModel) {
         if (entryOrderType == null) {
             throw new IllegalArgumentException("Starting type must not be null");
         }
@@ -147,9 +149,10 @@ public class BaseTradingRecord implements TradingRecord {
     public BaseTradingRecord(CostModel transactionCostModel, CostModel holdingCostModel, Order... orders) {
         this(orders[0].getType(), transactionCostModel, holdingCostModel);
         for (Order o : orders) {
+	    // 新订单是否要成为一个进入订单
             boolean newOrderWillBeAnEntry = currentTrade.isNew();
             if (newOrderWillBeAnEntry && o.getType() != startingType) {
-                // Special case for entry/exit types reversal
+                // Special case for entry/exit types reversal	进入/退出类型反转的特殊情况
                 // E.g.: BUY, SELL,
                 // BUY, SELL,
                 // SELL, BUY,
@@ -161,6 +164,10 @@ public class BaseTradingRecord implements TradingRecord {
         }
     }
 
+    /**
+     * 获得当前交易
+     * @return 
+     */
     @Override
     public Trade getCurrentTrade() {
         return currentTrade;
@@ -170,6 +177,7 @@ public class BaseTradingRecord implements TradingRecord {
     public void operate(int index, Num price, Num amount) {
         if (currentTrade.isClosed()) {
             // Current trade closed, should not occur
+	    // 当前交易已关闭，不应发生
             throw new IllegalStateException("Current trade should not be closed");
         }
         boolean newOrderWillBeAnEntry = currentTrade.isNew();
@@ -236,9 +244,11 @@ public class BaseTradingRecord implements TradingRecord {
 
     /**
      * Records an order and the corresponding trade (if closed).
+     * 记录订单和相应的交易（如果订单已关闭）。
      *
      * @param order   the order to be recorded
      * @param isEntry true if the order is an entry, false otherwise (exit)
+     *	    如果订单是进入订单，则为true，否则为false（退出订单）
      */
     private void recordOrder(Order order, boolean isEntry) {
         if (order == null) {
@@ -246,6 +256,7 @@ public class BaseTradingRecord implements TradingRecord {
         }
 
         // Storing the new order in entries/exits lists
+	// 在进入/退出列表中保存新订单
         if (isEntry) {
             entryOrders.add(order);
         } else {
@@ -253,16 +264,20 @@ public class BaseTradingRecord implements TradingRecord {
         }
 
         // Storing the new order in orders list
+	// 在订单列表中保存新订单
         orders.add(order);
         if (Order.OrderType.BUY.equals(order.getType())) {
             // Storing the new order in buy orders list
+	    // 在买单列表中保存新订单
             buyOrders.add(order);
         } else if (Order.OrderType.SELL.equals(order.getType())) {
             // Storing the new order in sell orders list
+	    // 在卖单列表中保存新订单
             sellOrders.add(order);
         }
 
         // Storing the trade if closed
+	// 保存已关闭订单
         if (currentTrade.isClosed()) {
             trades.add(currentTrade);
             currentTrade = new Trade(startingType, transactionCostModel, holdingCostModel);

@@ -73,16 +73,25 @@ public class Quickstart {
         // We want to buy:
         // - if the 5-bars SMA crosses over 30-bars SMA
         // - or if the price goes below a defined price (e.g $800.00)
-        Rule buyingRule = new CrossedUpIndicatorRule(shortSma, longSma)
-                .or(new CrossedDownIndicatorRule(closePrice, 800));
+	// 买单规则：
+	// 我们希望在以下条件满足时买：
+	//  - 5日SMA上穿30日SMA
+	//  - 价格低于预定的价格（例如800）
+        Rule buyingRule = new CrossedUpIndicatorRule(shortSma, longSma).or(new CrossedDownIndicatorRule(closePrice, 800));
 
         // Selling rules
         // We want to sell:
         // - if the 5-bars SMA crosses under 30-bars SMA
         // - or if the price loses more than 3%
         // - or if the price earns more than 2%
+	// 卖单规则
+	// 我们希望在以下条件满足时卖：
+	//  - 5日SMA下穿30日SMA
+	//  - 价格下跌超过3%
+	//  - 价格收益超过2%
         Rule sellingRule = new CrossedDownIndicatorRule(shortSma, longSma)
-                .or(new StopLossRule(closePrice, series.numOf(3))).or(new StopGainRule(closePrice, series.numOf(2)));
+                .or(new StopLossRule(closePrice, series.numOf(3)))
+		.or(new StopGainRule(closePrice, series.numOf(2)));
 
         // Running our juicy trading strategy...
         BarSeriesManager seriesManager = new BarSeriesManager(series);

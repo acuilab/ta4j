@@ -29,16 +29,20 @@ import org.ta4j.core.TradingRecord;
  * A simple boolean rule.
  *
  * Satisfied when it has been initialized with true.
+ * 
+ * 简单的布尔规则，初始化为true时满足。
  */
 public class BooleanRule extends AbstractRule {
 
     /**
      * An always-true rule
+     * 永真规则
      */
     public static final BooleanRule TRUE = new BooleanRule(true);
 
     /**
      * An always-false rule
+     * 永假规则
      */
     public static final BooleanRule FALSE = new BooleanRule(false);
 

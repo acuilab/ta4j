@@ -30,8 +30,8 @@ import org.ta4j.core.num.Num;
 /**
  * Indicator-rising-indicator rule.
  *
- * Satisfied when the values of the {@link Indicator indicator} increase within
- * the barCount.
+ * Satisfied when the values of the {@link Indicator indicator} increase within the barCount.
+ * 当指标的值在barCount内增加时满足。
  */
 public class IsRisingRule extends AbstractRule {
 
@@ -40,6 +40,7 @@ public class IsRisingRule extends AbstractRule {
     /** The barCount */
     private final int barCount;
     /** The minimum required strenght of the rising */
+    // 上升所需的最低强度（介于'0'和'1'之间，例如'1'为严格上升）
     private double minStrenght;
 
     /**
@@ -57,8 +58,8 @@ public class IsRisingRule extends AbstractRule {
      * 
      * @param ref         the indicator
      * @param barCount    the time frame
-     * @param minStrenght the minimum required rising strenght (between '0' and '1',
-     *                    e.g. '1' for strict rising)
+     * @param minStrenght the minimum required rising strenght (between '0' and '1', e.g. '1' for strict rising)
+     *	    所需的最小上升强度（介于'0'和'1'之间，例如'1'为严格上升）
      */
     public IsRisingRule(Indicator<Num> ref, int barCount, double minStrenght) {
         this.ref = ref;

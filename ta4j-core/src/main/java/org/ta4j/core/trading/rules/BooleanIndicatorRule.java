@@ -30,6 +30,7 @@ import org.ta4j.core.TradingRecord;
  * A boolean-indicator-based rule.
  *
  * Satisfied when the value of the {@link Indicator indicator} is true.
+ * 基于布尔指标的规则，当指标值为true时满意
  */
 public class BooleanIndicatorRule extends AbstractRule {
 

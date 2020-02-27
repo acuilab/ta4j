@@ -33,22 +33,24 @@ import static org.ta4j.core.num.NaN.NaN;
 
 /**
  * Indicator-in-slope rule.
+ * 斜率规则
  *
  * Satisfied when the difference of the value of the {@link Indicator indicator}
  * and the previous (n-th) value of the {@link Indicator indicator} is between
  * the values of maxSlope or/and minSlope. It can test both, positive and
  * negative slope.
+ * 当指标值与指标的前一个（第n个）值之差在maxSlope或/和minSlope的值之间时满足。 它可以测试正斜率和负斜率。
  */
 public class InSlopeRule extends AbstractRule {
 
     /** The actual indicator */
-    private Indicator<Num> ref;
+    private Indicator<Num> ref;		    // 实际指标
     /** The previous n-th value of ref */
-    private PreviousValueIndicator prev;
+    private PreviousValueIndicator prev;    // 实际指标的前数第n个值
     /** The minimum slope between ref and prev */
-    private Num minSlope;
+    private Num minSlope;		    // 当前值和前一个值之间的最小斜率
     /** The maximum slope between ref and prev */
-    private Num maxSlope;
+    private Num maxSlope;		    // 当前值和前一个值之间的最大斜率
 
     /**
      * Constructor.
@@ -104,11 +106,11 @@ public class InSlopeRule extends AbstractRule {
 
     @Override
     public boolean isSatisfied(int index, TradingRecord tradingRecord) {
-        DifferenceIndicator diff = new DifferenceIndicator(ref, prev);
-        Num val = diff.getValue(index);
-        boolean minSlopeSatisfied = minSlope.isNaN() || val.isGreaterThanOrEqual(minSlope);
-        boolean maxSlopeSatisfied = maxSlope.isNaN() || val.isLessThanOrEqual(maxSlope);
-        boolean isNaN = minSlope.isNaN() && maxSlope.isNaN();
+        DifferenceIndicator diff = new DifferenceIndicator(ref, prev);	// 差异指标
+        Num val = diff.getValue(index);	    // 获得当前索引的差异值
+        boolean minSlopeSatisfied = minSlope.isNaN() || val.isGreaterThanOrEqual(minSlope); // 是否满足最小斜率
+        boolean maxSlopeSatisfied = maxSlope.isNaN() || val.isLessThanOrEqual(maxSlope);    // 是否满足最大斜率
+        boolean isNaN = minSlope.isNaN() && maxSlope.isNaN();				    // 是否是NaN
 
         final boolean satisfied = minSlopeSatisfied && maxSlopeSatisfied && !isNaN;
         traceIsSatisfied(index, satisfied);

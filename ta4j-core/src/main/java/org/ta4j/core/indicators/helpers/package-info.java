@@ -23,5 +23,6 @@
  */
 /**
  * Indicators that can be helpful (for other indicators)
+ * 可能对于其他指标有用的指标
  */
 package org.ta4j.core.indicators.helpers;

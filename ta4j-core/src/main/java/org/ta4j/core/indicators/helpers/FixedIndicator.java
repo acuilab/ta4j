@@ -32,6 +32,7 @@ import java.util.List;
 
 /**
  * A fixed indicator.
+ * 固定指标。指标值是一系列固定的常量。
  * 
  * @param <T> the type of returned value (Double, Boolean, etc.)
  */
@@ -43,6 +44,7 @@ public class FixedIndicator<T> extends AbstractIndicator<T> {
     /**
      * Constructor.
      * 
+     * @param series
      * @param values the values to be returned by this indicator
      */
     @SafeVarargs

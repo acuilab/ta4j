@@ -28,9 +28,13 @@ import org.ta4j.core.num.Num;
 
 import java.io.Serializable;
 
+/**
+ * 成本模型
+ */
 public interface CostModel extends Serializable {
 
     /**
+     * 计算单笔交易的交易成本
      * @param trade      the trade
      * @param finalIndex final index of consideration for open trades
      * @return Calculates the trading cost of a single trade
@@ -38,12 +42,14 @@ public interface CostModel extends Serializable {
     Num calculate(Trade trade, int finalIndex);
 
     /**
+     * 计算单笔交易的交易成本
      * @param trade the trade
      * @return Calculates the trading cost of a single trade
      */
     Num calculate(Trade trade);
 
     /**
+     * 计算某一交易数量的交易成本
      * @param price  the price per asset
      * @param amount number of traded assets
      * @return Calculates the trading cost for a certain traded amount

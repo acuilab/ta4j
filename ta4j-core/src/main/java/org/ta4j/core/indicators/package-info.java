@@ -27,6 +27,7 @@
  * Market indicators are mathematical transformations. They are used to help
  * assess whether an asset is trending, and if it is, the probability of its
  * direction and of continuation.
+ * 市场指标是数学上的转换。 它们用于帮助评估资产是否处于趋势中，如果是，则指示其方向和持续性的可能性。
  * 
  * @see <a href=
  *      "http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators">http://stockcharts.com/school/doku.php?id=chart_school:technical_indicators</a>

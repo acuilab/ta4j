@@ -31,6 +31,8 @@ import java.util.Arrays;
  * An indexes-based rule.
  *
  * Satisfied for provided indexes.
+ * 
+ * 基于索引的规则，对提供的索引满意
  */
 public class FixedRule extends AbstractRule {
 

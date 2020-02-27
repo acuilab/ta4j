@@ -31,6 +31,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Abstract {@link Indicator indicator}.
+ * @param <T>
  */
 public abstract class AbstractIndicator<T> implements Indicator<T> {
 

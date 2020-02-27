@@ -32,6 +32,7 @@ import org.ta4j.core.num.Num;
  * A stop-gain rule.
  *
  * Satisfied when the close price reaches the gain threshold.
+ * 当收盘价达到收益阈值时满足。
  */
 public class StopGainRule extends AbstractRule {
 

@@ -83,21 +83,25 @@ public class Order implements Serializable {
 
     /**
      * Type of the order
+     * 订单类型
      */
     private OrderType type;
 
     /**
      * The index the order was executed
+     * 订单执行的索引
      */
     private int index;
 
     /**
      * The pricePerAsset for the order
+     * 订单的单价
      */
     private Num pricePerAsset;
 
     /**
      * The net price for the order, net transaction costs
+     * 订单的净价格，净交易成本
      */
     private Num netPrice;
 

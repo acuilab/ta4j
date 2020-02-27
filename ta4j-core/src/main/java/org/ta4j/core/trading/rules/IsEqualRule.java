@@ -31,8 +31,8 @@ import org.ta4j.core.num.Num;
 /**
  * Indicator-equal-indicator rule.
  *
- * Satisfied when the value of the first {@link Indicator indicator} is equal to
- * the value of the second one.
+ * Satisfied when the value of the first {@link Indicator indicator} is equal to the value of the second one.
+ * 当第一个指标的值等于第二个指标的值时满足。
  */
 public class IsEqualRule extends AbstractRule {
 

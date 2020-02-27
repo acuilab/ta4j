@@ -23,6 +23,7 @@
  */
 /**
  * Trading rules for trading strategies.
+ * 交易策略的交易规则。
  *
  * {@link org.ta4j.core.Rule} can be combined and set as entry/exit signals for
  * a trading {@link org.ta4j.core.Strategy}. A trading strategy is designed to

@@ -27,6 +27,7 @@ import java.util.function.Function;
 
 /**
  * Representation of an undefined or unrepresentable value: NaN (not a number)
+ * 表示未定义或无法表示的值：NaN（非数字）
  * <br>
  * Special behavior in methods such as:
  * <ul>

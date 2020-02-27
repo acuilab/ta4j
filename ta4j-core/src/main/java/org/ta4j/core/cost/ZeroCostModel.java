@@ -26,6 +26,9 @@ package org.ta4j.core.cost;
 import org.ta4j.core.Trade;
 import org.ta4j.core.num.Num;
 
+/**
+ * 无交易成本模型
+ */
 public class ZeroCostModel implements CostModel {
 
     /**
@@ -35,14 +38,17 @@ public class ZeroCostModel implements CostModel {
     public ZeroCostModel() {
     }
 
+    @Override
     public Num calculate(Trade trade) {
         return calculate(trade, 0);
     }
 
+    @Override
     public Num calculate(Trade trade, int currentIndex) {
         return trade.getEntry().getPricePerAsset().numOf(0);
     }
 
+    @Override
     public Num calculate(Num price, Num amount) {
         return price.numOf(0);
     }
@@ -51,7 +57,9 @@ public class ZeroCostModel implements CostModel {
      * Evaluate if two models are equal
      * 
      * @param otherModel model to compare with
+     * @return 
      */
+    @Override
     public boolean equals(CostModel otherModel) {
         boolean equality = false;
         if (this.getClass().equals(otherModel.getClass())) {

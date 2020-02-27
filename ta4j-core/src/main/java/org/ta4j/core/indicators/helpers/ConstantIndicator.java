@@ -28,7 +28,8 @@ import org.ta4j.core.indicators.AbstractIndicator;
 
 /**
  * Constant indicator.
- * 常量指标
+ * 常量指标：指标值不会变化
+ * @param <T>
  */
 public class ConstantIndicator<T> extends AbstractIndicator<T> {
 

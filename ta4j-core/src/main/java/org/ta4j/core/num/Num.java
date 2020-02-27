@@ -234,17 +234,16 @@ public interface Num extends Comparable<Num>, Serializable {
     Num max(Num other);
 
     /**
-     * Returns the {@link Function} to convert a number instance into the
-     * corresponding Num instance
+     * Returns the {@link Function} to convert a number instance into the corresponding Num instance
+     * 返回将Number实例转换为相应的Num实例的函数
      * 
-     * @return function which converts a number instance into the corresponding Num
-     *         instance
+     * @return function which converts a number instance into the corresponding Num instance
      */
     Function<Number, Num> function();
 
     /**
-     * Transforms a {@link Number} into a new Num instance of this <code>Num</code>
-     * implementation
+     * Transforms a {@link Number} into a new Num instance of this <code>Num</code> implementation'
+     * 将Number转换为新的Num实例
      * 
      * @param value the Number to transform
      * @return the corresponding Num implementation of the <code>value</code>

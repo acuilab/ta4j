@@ -47,18 +47,23 @@ public class Trade implements Serializable {
     private static final long serialVersionUID = -5484709075767220358L;
 
     /** The entry order */
+    // 进入订单
     private Order entry;
 
     /** The exit order */
+    // 退出订单
     private Order exit;
 
     /** The type of the entry order */
+    // 进入订单类型
     private OrderType startingType;
 
     /** The cost model for transactions of the asset */
+    // 资产交易的成本模型
     private CostModel transactionCostModel;
 
     /** The cost model for holding the asset */
+    // 持有资产的成本模型
     private CostModel holdingCostModel;
 
     /**
@@ -81,8 +86,7 @@ public class Trade implements Serializable {
     /**
      * Constructor.
      * 
-     * @param startingType         the starting {@link OrderType order type} of the
-     *                             trade (i.e. type of the entry order)
+     * @param startingType         the starting {@link OrderType order type} of the trade (i.e. type of the entry order)
      * @param transactionCostModel the cost model for transactions of the asset
      * @param holdingCostModel     the cost model for holding asset (e.g. borrowing)
      */
@@ -194,21 +198,27 @@ public class Trade implements Serializable {
     }
 
     /**
+     * 交易是否被关闭（进入订单和退出订单都不为空）
      * @return true if the trade is closed, false otherwise
+     * 如果交易关闭，则为true，否则为false
      */
     public boolean isClosed() {
         return (entry != null) && (exit != null);
     }
 
     /**
+     * 交易是否被打开（进入订单不为空，退出订单为空）
      * @return true if the trade is opened, false otherwise
+     * 如果交易被打开，则为true，否则为false
      */
     public boolean isOpened() {
         return (entry != null) && (exit == null);
     }
 
     /**
+     * 交易是否是新的（进入订单为空且退出订单也为空）
      * @return true if the trade is new, false otherwise
+     * 如果交易是新的，则为true，否则为false
      */
     public boolean isNew() {
         return (entry == null) && (exit == null);

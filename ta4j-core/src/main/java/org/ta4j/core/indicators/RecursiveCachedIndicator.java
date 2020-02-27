@@ -35,12 +35,20 @@ import org.ta4j.core.Indicator;
  * Concretely when an index value is asked, if the last cached value is too
  * old/far, the computation of all the values between the last cached and the
  * asked one is executed iteratively.
+ * 
+ * 递归缓存指示器。递归指示器应扩展此类。
+ * 此类仅在这里是为了避免（确定，推迟）在递归指示器的第一个getValue（int）调用上可能引发的StackOverflowError。
+ * 具体地，当请求索引值时，如果最后缓存的值太旧/太远，则迭代执行最后缓存和所请求的值之间的所有值的计算。
+ * 
+ * @param <T>
  */
 public abstract class RecursiveCachedIndicator<T> extends CachedIndicator<T> {
 
     /**
-     * The recursion threshold for which an iterative calculation is executed. TODO
-     * Should be variable (depending on the sub-indicators used in this indicator)
+     * The recursion threshold for which an iterative calculation is executed. 
+     * TODO Should be variable (depending on the sub-indicators used in this indicator)
+     * 对其执行迭代计算的递归阈值。
+     * TODO: 应该是可变的（取决于此指标中使用的子指标）
      */
     private static final int RECURSION_THRESHOLD = 100;
 
@@ -74,6 +82,8 @@ public abstract class RecursiveCachedIndicator<T> extends CachedIndicator<T> {
                 if (index - startIndex > RECURSION_THRESHOLD) {
                     // Too many uncalculated values; the risk for a StackOverflowError becomes high.
                     // Calculating the previous values iteratively
+		    // 未计算的值太多； StackOverflowError的风险很高。
+		    // 迭代计算先前的值
                     for (int prevIdx = startIndex; prevIdx < index; prevIdx++) {
                         super.getValue(prevIdx);
                     }

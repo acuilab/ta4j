@@ -34,6 +34,7 @@ import static org.ta4j.core.Order.OrderType;
  * order.
  *
  * Satisfied after a fixed number of bars since the last order.
+ * 自上次下单后经过固定数量的柱后满意。
  */
 public class WaitForRule extends AbstractRule {
 

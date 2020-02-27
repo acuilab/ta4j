@@ -138,12 +138,16 @@ public interface BarSeries extends Serializable {
      * If a new bar is added to the series such that the number of bars will exceed
      * the maximum bar count, then the FIRST bar in the series is automatically
      * removed, ensuring that the maximum bar count is not exceeded.
+     * 
+     * 设置将在柱序列中保留的最大柱数量。
+     * 如果将新的柱添加到柱序列中，从而使柱数超过最大柱数，则将自动删除该柱序列中的第一个柱，以确保不超过最大柱数。
      *
      * @param maximumBarCount the maximum bar count
      */
     void setMaximumBarCount(int maximumBarCount);
 
     /**
+     * 获得删除柱的数量
      * @return the number of removed bars
      */
     int getRemovedBarsCount();
@@ -259,6 +263,7 @@ public interface BarSeries extends Serializable {
     /**
      * Adds a new <code>Bar</code> to the bar series.
      *
+     * @param timePeriod
      * @param endTime    end time of the bar
      * @param openPrice  the open price
      * @param highPrice  the high/max price

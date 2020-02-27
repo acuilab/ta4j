@@ -23,5 +23,6 @@
  */
 /**
  * Indicators for the realization of the 'Bollinger Bands'
+ * 实现“布林带”指标
  */
 package org.ta4j.core.indicators.bollinger;

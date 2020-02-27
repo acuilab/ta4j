@@ -43,8 +43,7 @@ public interface Rule {
 
     /**
      * @param rule another trading rule
-     * @return a rule which is the AND combination of this rule with the provided
-     *         one
+     * @return a rule which is the AND combination of this rule with the provided one
      */
     default Rule and(Rule rule) {
         return new AndRule(this, rule);
@@ -60,14 +59,14 @@ public interface Rule {
 
     /**
      * @param rule another trading rule
-     * @return a rule which is the XOR combination of this rule with the provided
-     *         one
+     * @return a rule which is the XOR combination of this rule with the provided one
      */
     default Rule xor(Rule rule) {
         return new XorRule(this, rule);
     }
 
     /**
+     * 这是该规则的逻辑否定的规则
      * @return a rule which is the logical negation of this rule
      */
     default Rule negation() {
@@ -86,8 +85,7 @@ public interface Rule {
     /**
      * @param index         the bar index
      * @param tradingRecord the potentially needed trading history
-     * @return true if this rule is satisfied for the provided index, false
-     *         otherwise
+     * @return true if this rule is satisfied for the provided index, false otherwise
      */
     boolean isSatisfied(int index, TradingRecord tradingRecord);
 }

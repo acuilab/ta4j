@@ -30,23 +30,26 @@ import org.ta4j.core.num.Num;
 /**
  * Indicator-falling-indicator rule.
  *
- * Satisfied when the values of the {@link Indicator indicator} decrease within
- * the barCount.
+ * Satisfied when the values of the {@link Indicator indicator} decrease within the barCount.
+ * 当指标的值在barCount内减小时满足。
  */
 public class IsFallingRule extends AbstractRule {
 
     /** The actual indicator */
+    // 实际的指标
     private final Indicator<Num> ref;
     /** The barCount */
     private final int barCount;
     /** The minimum required strenght of the falling */
+    // 下跌所需的最小强度,介于'0'和'1'之间，例如'1'为严格下降
+    // 所谓绝对下降，是指之前的每个柱的值都比当前的大
     private double minStrenght;
 
     /**
      * Constructor.
      * 
-     * @param ref      the indicator
-     * @param barCount the time frame
+     * @param ref      the indicator	实际的指标
+     * @param barCount the time frame	时间帧
      */
     public IsFallingRule(Indicator<Num> ref, int barCount) {
         this(ref, barCount, 1.0);
@@ -56,9 +59,11 @@ public class IsFallingRule extends AbstractRule {
      * Constructor.
      * 
      * @param ref         the indicator
+     *	    实际的指标
      * @param barCount    the time frame
-     * @param minStrenght the minimum required falling strength (between '0' and
-     *                    '1', e.g. '1' for strict falling)
+     *	    时间帧
+     * @param minStrenght the minimum required falling strength (between '0' and '1', e.g. '1' for strict falling)
+     *	    要求的最小下降强度（介于'0'和'1'之间，例如'1'为严格下降）
      */
     public IsFallingRule(Indicator<Num> ref, int barCount, double minStrenght) {
         this.ref = ref;

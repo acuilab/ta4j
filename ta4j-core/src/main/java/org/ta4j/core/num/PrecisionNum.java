@@ -63,6 +63,8 @@ import static org.ta4j.core.num.NaN.NaN;
  * Representation of arbitrary precision BigDecimal. A {@code Num} consists of a
  * {@code BigDecimal} with arbitrary {@link MathContext} (precision and rounding
  * mode).
+ * 
+ * 表示任意精度的BigDecimal。 一个Num由一个BigDecimal组成，该BigDecimal具有任意的MathContext（精度和舍入模式）。
  *
  * @see BigDecimal
  * @see MathContext

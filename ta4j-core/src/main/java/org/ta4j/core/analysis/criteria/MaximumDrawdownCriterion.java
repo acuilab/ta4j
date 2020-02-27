@@ -31,6 +31,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Maximum drawdown criterion.
+ * 最大回撤标准。
  *
  * @see <a href=
  *      "http://en.wikipedia.org/wiki/Drawdown_%28economics%29">http://en.wikipedia.org/wiki/Drawdown_%28economics%29</a>
@@ -59,6 +60,7 @@ public class MaximumDrawdownCriterion extends AbstractAnalysisCriterion {
 
     /**
      * Calculates the maximum drawdown from a cash flow over a series.
+     * 计算一系列现金流量的最大亏损。
      *
      * @param series   the bar series
      * @param cashFlow the cash flow

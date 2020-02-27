@@ -45,9 +45,10 @@ public class CrossedUpIndicatorRule extends AbstractRule {
 
     /**
      * Constructor.
+     * 用一个指标（下序列）和一个阈值构成的常量指标（上序列）创建规则
      * 
-     * @param indicator the indicator
-     * @param threshold a threshold
+     * @param indicator the indicator	指标（下序列）
+     * @param threshold a threshold	阈值（上序列）
      */
     public CrossedUpIndicatorRule(Indicator<Num> indicator, Number threshold) {
         this(indicator, indicator.numOf(threshold));
@@ -55,9 +56,10 @@ public class CrossedUpIndicatorRule extends AbstractRule {
 
     /**
      * Constructor.
+     * 用一个指标（下序列）和一个阈值构成的常量指标（上序列）创建规则
      * 
-     * @param indicator the indicator
-     * @param threshold a threshold
+     * @param indicator the indicator	指标（下序列）
+     * @param threshold a threshold	阈值（上序列）
      */
     public CrossedUpIndicatorRule(Indicator<Num> indicator, Num threshold) {
         this(indicator, new ConstantIndicator<Num>(indicator.getBarSeries(), threshold));
@@ -66,8 +68,9 @@ public class CrossedUpIndicatorRule extends AbstractRule {
     /**
      * Constructor.
      * 
-     * @param first  the first indicator
-     * @param second the second indicator
+     * 
+     * @param first  the first indicator    下序列
+     * @param second the second indicator   上序列
      */
     public CrossedUpIndicatorRule(Indicator<Num> first, Indicator<Num> second) {
         this.cross = new CrossIndicator(second, first);

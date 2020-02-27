@@ -30,6 +30,7 @@ import java.math.BigDecimal;
 
 /**
  * A fixed decimal indicator.
+ * 固定的十进制指标。指标值是一系列固定的十进制数。
  */
 public class FixedDecimalIndicator extends FixedIndicator<Num> {
 

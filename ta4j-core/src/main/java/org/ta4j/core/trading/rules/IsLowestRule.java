@@ -31,8 +31,8 @@ import org.ta4j.core.num.Num;
 /**
  * Indicator-lowest-indicator rule.
  *
- * Satisfied when the value of the {@link Indicator indicator} is the lowest
- * within the barCount.
+ * Satisfied when the value of the {@link Indicator indicator} is the lowest within the barCount.
+ * 当指标的值在barCount内最低时满足。
  */
 public class IsLowestRule extends AbstractRule {
 

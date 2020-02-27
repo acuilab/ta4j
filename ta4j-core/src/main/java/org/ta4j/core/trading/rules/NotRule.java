@@ -31,6 +31,9 @@ import org.ta4j.core.TradingRecord;
  *
  * Satisfied when provided rule is not satisfied.<br>
  * Not satisfied when provided rule is satisfied.
+ * 不满足规定的规则时满意。
+ * 满足提供的规则时不满意。
+ * 
  */
 public class NotRule extends AbstractRule {
 

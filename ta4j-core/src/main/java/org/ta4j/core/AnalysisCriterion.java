@@ -43,6 +43,7 @@ import java.util.List;
 public interface AnalysisCriterion {
 
     /**
+     * 计算交易的标准值
      * @param series a bar series, not null
      * @param trade  a trade, not null
      * @return the criterion value for the trade
@@ -59,8 +60,8 @@ public interface AnalysisCriterion {
     /**
      * @param manager    the bar series manager
      * @param strategies a list of strategies
-     * @return the best strategy (among the provided ones) according to the
-     *         criterion
+     * @return the best strategy (among the provided ones) according to the criterion
+     *	    根据标准得出的最佳策略（在所提供的策略中）
      */
     default Strategy chooseBest(BarSeriesManager manager, List<Strategy> strategies) {
 

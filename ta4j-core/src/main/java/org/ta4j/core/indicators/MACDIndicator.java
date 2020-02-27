@@ -38,8 +38,8 @@ public class MACDIndicator extends CachedIndicator<Num> {
 
     private static final long serialVersionUID = -6899062131135971403L;
 
-    private final EMAIndicator shortTermEma;
-    private final EMAIndicator longTermEma;
+    private final EMAIndicator shortTermEma;	// 12日EMA
+    private final EMAIndicator longTermEma;	// 26日EMA
 
     /**
      * Constructor with shortBarCount "12" and longBarCount "26".

@@ -155,9 +155,11 @@ public class BaseBarSeries implements BarSeries {
      * @param name             the name of the series
      * @param bars             the list of bars of the series
      * @param seriesBeginIndex the begin index (inclusive) of the bar series
+     *	    柱序列的开始索引（含）
      * @param seriesEndIndex   the end index (inclusive) of the bar series
-     * @param constrained      true to constrain the bar series (i.e. indexes cannot
-     *                         change), false otherwise
+     *	    柱序列的结束索引（含）
+     * @param constrained      true to constrain the bar series (i.e. indexes cannot change), false otherwise
+     *	    为true来限制柱序列（即索引不能更改），否则为false
      */
     private BaseBarSeries(String name, List<Bar> bars, int seriesBeginIndex, int seriesEndIndex, boolean constrained) {
         this(name, bars, seriesBeginIndex, seriesEndIndex, constrained, PrecisionNum::valueOf);
@@ -175,8 +177,7 @@ public class BaseBarSeries implements BarSeries {
      * @param numFunction      a {@link Function} to convert a {@link Number} to a
      *                         {@link Num Num implementation}
      */
-    BaseBarSeries(String name, List<Bar> bars, int seriesBeginIndex, int seriesEndIndex, boolean constrained,
-            Function<Number, Num> numFunction) {
+    BaseBarSeries(String name, List<Bar> bars, int seriesBeginIndex, int seriesEndIndex, boolean constrained, Function<Number, Num> numFunction) {
         this.name = name;
 
         this.bars = bars;

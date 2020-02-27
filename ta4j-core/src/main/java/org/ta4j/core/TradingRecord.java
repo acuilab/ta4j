@@ -48,12 +48,14 @@ import static org.ta4j.core.num.NaN.NaN;
 public interface TradingRecord extends Serializable {
 
     /**
+     * 获得当前交易
      * @return the current trade
      */
     Trade getCurrentTrade();
 
     /**
      * Operates an order in the trading record.
+     * 操作交易记录中的订单
      * 
      * @param index the index to operate the order
      */
@@ -63,15 +65,17 @@ public interface TradingRecord extends Serializable {
 
     /**
      * Operates an order in the trading record.
+     * 操作交易记录中的订单
      * 
-     * @param index  the index to operate the order
-     * @param price  the price of the order
-     * @param amount the amount to be ordered
+     * @param index  the index to operate the order 操作订单的索引号
+     * @param price  the price of the order	    订单价格
+     * @param amount the amount to be ordered	    订单数量
      */
     void operate(int index, Num price, Num amount);
 
     /**
      * Operates an entry order in the trading record.
+     * 操作交易记录中的进入订单。
      * 
      * @param index the index to operate the entry
      * @return true if the entry has been operated, false otherwise
@@ -82,18 +86,21 @@ public interface TradingRecord extends Serializable {
 
     /**
      * Operates an entry order in the trading record.
+     * 操作交易记录中的进入订单。
      * 
-     * @param index  the index to operate the entry
-     * @param price  the price of the order
-     * @param amount the amount to be ordered
+     * @param index  the index to operate the entry 操作进入订单的索引号
+     * @param price  the price of the order	    订单价格
+     * @param amount the amount to be ordered	    订单数量
      * @return true if the entry has been operated, false otherwise
+     *	    如果该进入订单已被操作，则为true，否则为false
      */
     boolean enter(int index, Num price, Num amount);
 
     /**
      * Operates an exit order in the trading record.
+     * 操作交易记录中的退出订单。
      * 
-     * @param index the index to operate the exit
+     * @param index the index to operate the exit   操作退出订单的索引号
      * @return true if the exit has been operated, false otherwise
      */
     default boolean exit(int index) {
@@ -102,15 +109,18 @@ public interface TradingRecord extends Serializable {
 
     /**
      * Operates an exit order in the trading record.
+     * 操作交易记录中的退出订单。
      * 
-     * @param index  the index to operate the exit
-     * @param price  the price of the order
-     * @param amount the amount to be ordered
+     * @param index  the index to operate the exit  操作退出订单的索引号
+     * @param price  the price of the order	    订单价格
+     * @param amount the amount to be ordered	    订单数量
      * @return true if the exit has been operated, false otherwise
+     *	    如果该退出订单已被操作，则为true，否则为false
      */
     boolean exit(int index, Num price, Num amount);
 
     /**
+     * 如果没有交易开放，则为true，否则为false
      * @return true if no trade is open, false otherwise
      */
     default boolean isClosed() {
@@ -118,11 +128,13 @@ public interface TradingRecord extends Serializable {
     }
 
     /**
+     * 获得记录的交易
      * @return the recorded trades
      */
     List<Trade> getTrades();
 
     /**
+     * 获得记录的交易数量
      * @return the number of recorded trades
      */
     default int getTradeCount() {
@@ -130,6 +142,7 @@ public interface TradingRecord extends Serializable {
     }
 
     /**
+     * 获得记录的最后一个交易
      * @return the last trade recorded
      */
     default Trade getLastTrade() {
@@ -141,22 +154,26 @@ public interface TradingRecord extends Serializable {
     }
 
     /**
+     * 获得最后的订单
      * @return the last order recorded
      */
     Order getLastOrder();
 
     /**
+     * 获得指定类型的最后订单
      * @param orderType the type of the order to get the last of
      * @return the last order (of the provided type) recorded
      */
     Order getLastOrder(OrderType orderType);
 
     /**
+     * 获得最后的进入订单
      * @return the last entry order recorded
      */
     Order getLastEntry();
 
     /**
+     * 获得最后的退出订单
      * @return the last exit order recorded
      */
     Order getLastExit();

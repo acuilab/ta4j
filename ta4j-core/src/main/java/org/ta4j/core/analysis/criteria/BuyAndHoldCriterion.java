@@ -30,6 +30,7 @@ import org.ta4j.core.num.Num;
 
 /**
  * Buy and hold criterion.
+ * 购买并持有标准。
  *
  * @see <a href=
  *      "http://en.wikipedia.org/wiki/Buy_and_hold">http://en.wikipedia.org/wiki/Buy_and_hold</a>
@@ -48,8 +49,10 @@ public class BuyAndHoldCriterion extends AbstractAnalysisCriterion {
         int exitIndex = trade.getExit().getIndex();
 
         if (trade.getEntry().isBuy()) {
+	    // 进入订单时买单，则用退出订单（卖单）的收盘价/进入订单（买单）的收盘价
             return series.getBar(exitIndex).getClosePrice().dividedBy(series.getBar(entryIndex).getClosePrice());
         } else {
+	    // 进入订单时卖单，则用进入订单（卖单）的收盘价/推出订单（买单）的收盘价
             return series.getBar(entryIndex).getClosePrice().dividedBy(series.getBar(exitIndex).getClosePrice());
         }
     }

@@ -38,7 +38,8 @@ import java.io.Serializable;
 public interface Indicator<T> extends Serializable {
 
     /**
-     * @param index the bar index
+     * 获得指标值
+     * @param index the bar index   柱序号
      * @return the value of the indicator
      */
     T getValue(int index);
@@ -58,6 +59,8 @@ public interface Indicator<T> extends Serializable {
      * Returns all values from an {@link Indicator} as an array of Doubles. The
      * returned doubles could have a minor loss of precise, if {@link Indicator} was
      * based on {@link Num Num}.
+     * 
+     * 以双精度数组形式返回指标的所有值。 如果指标基于Num，则返回的双精度可能会损失一些精确度。
      *
      * @param ref      the indicator
      * @param index    the index

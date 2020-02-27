@@ -32,6 +32,7 @@ import org.ta4j.core.num.Num;
  * A stop-loss rule.
  *
  * Satisfied when the close price reaches the loss threshold.
+ * 当收盘价达到损失阈值时满足。
  */
 public class StopLossRule extends AbstractRule {
 

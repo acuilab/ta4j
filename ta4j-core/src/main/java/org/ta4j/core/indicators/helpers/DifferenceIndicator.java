@@ -29,13 +29,14 @@ import org.ta4j.core.num.Num;
 
 /**
  * Difference indicator.
+ * 差异指标(第一个指标-第二个指标)
  *
  * I.e.: first - second
  */
 public class DifferenceIndicator extends CachedIndicator<Num> {
 
-    private final Indicator<Num> first;
-    private final Indicator<Num> second;
+    private final Indicator<Num> first;	    // 第一个指标
+    private final Indicator<Num> second;    // 第二个指标
 
     /**
      * Constructor. (first minus second)
@@ -45,6 +46,7 @@ public class DifferenceIndicator extends CachedIndicator<Num> {
      */
     public DifferenceIndicator(Indicator<Num> first, Indicator<Num> second) {
         // TODO: check if first series is equal to second one
+	// TODO: 检查第一个序列是否等于第二个
         super(first);
         this.first = first;
         this.second = second;
